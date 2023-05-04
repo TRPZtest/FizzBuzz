@@ -5,16 +5,10 @@ type FizzBuzzServiceInterface interface {
 }
 
 type FizzBuzzService struct {
-	aliasConditionList []aliasCondition
-	rule               func(n int, aliasConditionList []aliasCondition) string
+	GetNumberOrAlias func(int) string
 }
 
 type aliasCondition struct {
 	alias     string
 	condition func(int) bool
-}
-
-func (s *FizzBuzzService) GetNumberOrAlias(n int) string {
-
-	return s.rule(n, s.aliasConditionList)
 }

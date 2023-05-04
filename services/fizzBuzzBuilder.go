@@ -10,7 +10,7 @@ type FizzBuzzBuilderInterface interface {
 
 type StandartFizzBuzzBuilder struct {
 	aliasConditionList []aliasCondition
-	rule               func(n int, aliasConditionList []aliasCondition) string
+	rule               func(n int) string
 }
 
 func NewStandartFizzBuzzBuilder() *StandartFizzBuzzBuilder {
@@ -25,11 +25,11 @@ func (b *StandartFizzBuzzBuilder) setAliasConditionList() {
 }
 
 func (b *StandartFizzBuzzBuilder) setRule() {
-	b.rule = func(n int, aliasConditionList []aliasCondition) string {
+	b.rule = func(n int) string {
 
 		output := ""
 
-		for _, item := range aliasConditionList {
+		for _, item := range b.aliasConditionList {
 			if item.condition(n) {
 				output = output + item.alias
 			}
@@ -50,7 +50,6 @@ func (b *StandartFizzBuzzBuilder) GetFizzBuzzService() FizzBuzzService {
 	b.setRule()
 
 	return FizzBuzzService{
-		aliasConditionList: b.aliasConditionList,
-		rule:               b.rule,
+		GetNumberOrAlias: b.rule,
 	}
 }
