@@ -1,6 +1,6 @@
 # FizzBuzz
 
-This my solve of FizzBuzz problem
+This is my solve of FizzBuzz problem
 
 To run application use:
 `make run`
